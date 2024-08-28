@@ -1,0 +1,17 @@
+import cv2             #Importa o OpenCV
+import numpy as np     #Importa o Numpy
+
+#Leitura da Imagem
+imagem = cv2.imread('Manoel-Gomes.png')
+#Número de linhas da imagem em pixels
+altura = imagem.shape[0]
+#Número de colunas da imagem em pixels
+largura = imagem.shape[1]
+#Criando duas variaveis com a altura e largura divididas
+q_altura, q_largura = altura / 4, largura / 4
+#Aqui está fazendo  uma função que faz a transformação da altura e largura
+T = np.float32([[1, 0, q_largura], [0, 1, q_altura]])
+#Faz a transformação final
+imagemT = cv2.warpAffine(imagem, T, (largura, altura))
+#Salva a imagem
+cv2.imwrite('Manoel-GomesT.png', imagemT)
